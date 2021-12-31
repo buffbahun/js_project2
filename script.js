@@ -27,11 +27,7 @@ function mergeAry(ary) {
 
 function intermediateSort([...ary0], [...ary1]) {
   let tmpAry = [];
-  while (ary0.length > 0) {
-    if (ary1.length < 1) {
-      tmpAry.push(...ary0);
-      break;
-    }
+  while (ary0.length > 0 && ary1.length > 0) {
     if (ary0[0] > ary1[0]) {
       tmpAry.push(ary1[0]);
       ary1.shift();
@@ -40,7 +36,7 @@ function intermediateSort([...ary0], [...ary1]) {
     tmpAry.push(ary0[0]);
     ary0.shift();
   }
-  tmpAry.push(...ary1);
+  tmpAry.push(...ary0, ...ary1);
   return tmpAry;
 }
 
@@ -50,4 +46,9 @@ function mergeSort(ary) {
   return mergeAry(divideAry(ary))[0];
 }
 
-console.log(mergeSort([38, 27, 43, 3, 9, 82, 10]));
+console.log(
+  mergeSort([
+    50, 31, 21, 28, 72, 41, 73, 93, 68, 43, 45, 78, 45, 17, 97, 71, 69, 61, 88,
+    75, 99, 44, 55, 9,
+  ])
+);
